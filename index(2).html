@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070b16">
+  <title>Premium NFT Gifts</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root{--bg:#060914;--panel:#0c1425;--line:#18344a;--gold:#ffd77b;--cyan:#31d9ff;--muted:#9bb0c6;--text:#f4f7ff}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(ellipse at 75% 0%,#15244a 0,transparent 42%),linear-gradient(145deg,#050812,#071321 55%,#090819);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
+    button,a{font:inherit}
+    .wrap{max-width:1120px;margin:auto;padding:20px 16px 40px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 22px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.06em}
+    .logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#ffd777,#9b6bff);color:#101425;font-size:22px;box-shadow:0 0 25px #ffc85b33}
+    .pill{border:1px solid #28516a;border-radius:999px;padding:8px 12px;color:#bcefff;font-size:12px;white-space:nowrap}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;border:1px solid #1a3d52;border-radius:24px;padding:clamp(20px,4vw,42px);background:linear-gradient(120deg,#0b1424ed,#10152bd9);overflow:hidden;position:relative}
+    .eyebrow{color:var(--cyan);font-weight:800;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+    h1{font-size:clamp(34px,6vw,62px);line-height:.98;letter-spacing:-.045em;margin:14px 0}
+    h1 span{color:var(--gold);text-shadow:0 0 24px #ffc85735}
+    .lead{color:#c0ccdd;line-height:1.65;max-width:520px}
+    .hero-art{min-height:230px;display:grid;place-items:center;position:relative}
+    .orb{width:min(270px,70vw);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 42%,#513b85 0,#151e43 38%,#091020 68%);border:1px solid #476b9b;box-shadow:0 0 55px #18bff82a,inset 0 0 35px #8d4cff24;position:relative}
+    .orb:before,.orb:after{content:"";position:absolute;inset:14px;border:1px solid #2bd9ff6b;border-radius:50%;transform:rotateX(65deg) rotateZ(-20deg)}
+    .orb:after{inset:30px;transform:rotateX(65deg) rotateZ(55deg);border-color:#ffd77b88}
+    .crown{font-size:clamp(80px,15vw,128px);filter:drop-shadow(0 0 18px #ffc95b99);z-index:1}
+    .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+    .stat{border:1px solid #1a3b51;background:#07101eaa;padding:10px 13px;border-radius:12px;color:#b9cce0;font-size:12px}
+    .stat b{display:block;color:var(--gold);font-size:16px;margin-bottom:3px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:30px 2px 14px}
+    h2{font-size:22px;margin:0}
+    .hint{font-size:12px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .card{border:1px solid #1b3b50;background:linear-gradient(160deg,#0c1728,#070d19);border-radius:18px;overflow:hidden;transition:transform .18s,border-color .18s}
+    .card:hover{transform:translateY(-3px);border-color:#4f7894}
+    .art{height:180px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 40%,var(--glow),#0b1325 67%)}
+    .art:before{content:"";position:absolute;width:155px;height:155px;border:1px solid #ffffff25;border-radius:50%;box-shadow:0 0 30px var(--glow);transform:rotateX(65deg)}
+    .art-icon{font-size:86px;filter:drop-shadow(0 0 15px var(--glow));z-index:1}
+    .rarity{position:absolute;top:12px;left:12px;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:900;letter-spacing:.06em;color:#fff;background:#5b27c5}
+    .rarity.legendary{background:linear-gradient(90deg,#9a6511,#f2c85f);color:#1c1505}
+    .rarity.rare{background:#006caa}
+    .content{padding:14px}
+    .content h3{margin:0 0 6px;font-size:16px}
+    .desc{margin:0 0 12px;color:var(--muted);font-size:12px;line-height:1.45;min-height:34px}
+    .meta{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:12px;color:#b7c8d9;margin-bottom:13px}
+    .price{font-size:18px;font-weight:900;color:var(--gold)}
+    .buy{width:100%;border:0;border-radius:11px;padding:12px;background:linear-gradient(100deg,#ffd77b,#f5ad45);color:#17101b;font-weight:900;cursor:pointer}
+    .buy:active{transform:scale(.985)}
+    .how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+    .step{padding:17px;border:1px solid #1b3b50;background:#0a1322;border-radius:16px}
+    .step .num{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:.1em}
+    .step h3{font-size:15px;margin:9px 0 5px}
+    .step p{font-size:12px;line-height:1.55;color:var(--muted);margin:0}
+    footer{margin-top:24px;padding:18px;border-top:1px solid #18344a;text-align:center;color:#8fa6bd;font-size:12px;line-height:1.6}
+    .notice{margin-top:16px;padding:13px 15px;border:1px solid #5a4724;background:#211a0d;border-radius:13px;color:#f4d99a;font-size:12px;line-height:1.55}
+    .modal-backdrop{display:none;position:fixed;inset:0;background:#02040bd9;z-index:10;padding:18px;align-items:center;justify-content:center}
+    .modal-backdrop.open{display:flex}
+    .modal{max-width:430px;width:100%;padding:24px;border-radius:20px;border:1px solid #31556d;background:#0c1527;box-shadow:0 20px 80px #000a}
+    .modal h2{color:var(--gold);margin-bottom:12px}
+    .modal p{color:#bdcada;line-height:1.6;font-size:14px}
+    .modal-actions{display:flex;gap:10px;margin-top:18px}
+    .secondary{flex:1;border:1px solid #31556d;background:#101e32;color:#e8f4ff;border-radius:11px;padding:11px;cursor:pointer}
+    .primary{flex:1;border:0;background:var(--gold);color:#16101b;border-radius:11px;padding:11px;font-weight:800;cursor:pointer}
+    @media(max-width:760px){.hero{grid-template-columns:1fr}.hero-art{min-height:190px}.orb{width:190px}.crown{font-size:92px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.art{height:145px}.art-icon{font-size:68px}.how{grid-template-columns:1fr}.pill{font-size:10px}.wrap{padding:14px 12px 28px}}
+    @media(max-width:420px){.grid{gap:9px}.content{padding:11px}.content h3{font-size:14px}.desc{font-size:11px}.art{height:125px}.art-icon{font-size:58px}.price{font-size:16px}.meta{font-size:10px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><div class="logo">✦</div><div>PREMIUM<br><span style="color:var(--gold)">NFT GIFTS</span></div></div>
+    <div class="pill">TON • DIGITAL COLLECTIBLES</div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Коллекция первого выпуска</div>
+      <h1>Подарки,<br><span>которые сияют</span></h1>
+      <p class="lead">Премиальные цифровые коллекционные предметы в эстетике золота, космоса и киберпанка. Выбери дизайн и оставь заявку на покупку.</p>
+      <div class="stats">
+        <div class="stat"><b>06</b>концептов коллекции</div>
+        <div class="stat"><b>TON</b>планируемая сеть</div>
+        <div class="stat"><b>0 ₽</b>за просмотр каталога</div>
+      </div>
+    </div>
+    <div class="hero-art"><div class="orb"><div class="crown">👑</div></div></div>
+  </section>
+
+  <div class="section-head"><div><div class="eyebrow">Выбери свой предмет</div><h2>Каталог коллекции</h2></div><div class="hint">Демонстрационные цены</div></div>
+  <section class="grid" id="catalog"></section>
+
+  <div class="section-head"><div><div class="eyebrow">Как это работает</div><h2>Путь к покупке</h2></div></div>
+  <section class="how">
+    <div class="step"><div class="num">01 / ВЫБОР</div><h3>Выбери подарок</h3><p>Посмотри дизайн, уровень редкости и ориентировочную цену.</p></div>
+    <div class="step"><div class="num">02 / ЗАЯВКА</div><h3>Свяжись с продавцом</h3><p>Уточни наличие, сеть, адрес коллекционного предмета и итоговую стоимость.</p></div>
+    <div class="step"><div class="num">03 / ПРОВЕРКА</div><h3>Проверь перед оплатой</h3><p>Оплачивай только после подтверждения подлинности NFT и условий передачи.</p></div>
+  </section>
+  <div class="notice"><b>Важно:</b> это стартовая витрина, а не действующий NFT-маркетплейс. Изображения-эмодзи, редкость и цены здесь демонстрационные; реальные NFT ещё не выпущены, а платежи не принимаются. Не отправляй криптовалюту на непроверенные адреса.</div>
+  <footer>PREMIUM NFT GIFTS · Концепт магазина<br>Для реального запуска нужны Telegram-бот, опубликованный сайт, выпущенные NFT и безопасная проверка оплаты.</footer>
+</div>
+
+<div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="eyebrow">Заявка на покупку</div>
+    <h2 id="modalTitle">Название подарка</h2>
+    <p id="modalText"></p>
+    <p>Магазин пока находится в демонстрационном режиме: покупка не списывает деньги и не выпускает NFT.</p>
+    <div class="modal-actions"><button class="secondary" id="closeModal">Назад</button><button class="primary" id="contactBtn">Настроить Telegram</button></div>
+  </div>
+</div>
+<script>
+  // После создания бота вставьте сюда username без символа @.
+  const SHOP_TELEGRAM_USERNAME = "";
+  const gifts = [
+    {name:"Королевская корона",icon:"👑",rarity:"LEGENDARY",className:"legendary",price:2500,glow:"#ffc857",desc:"Золотая корона с сапфировым сиянием."},
+    {name:"Дракон света",icon:"🐉",rarity:"EPIC",className:"",price:1200,glow:"#24cfff",desc:"Космический хранитель с неоновыми крыльями."},
+    {name:"Золотое сердце",icon:"💛",rarity:"LEGENDARY",className:"legendary",price:1800,glow:"#ffb52e",desc:"Геометрическое сердце в золотой огранке."},
+    {name:"Кибер-кот",icon:"🐈‍⬛",rarity:"EPIC",className:"",price:900,glow:"#b34bff",desc:"Неоновый компаньон из цифрового мира."},
+    {name:"Денежное дерево",icon:"🌳",rarity:"RARE",className:"rare",price:600,glow:"#ffd65c",desc:"Золотое дерево — символ роста и удачи."},
+    {name:"Феникс",icon:"🪽",rarity:"EPIC",className:"",price:1000,glow:"#4d8dff",desc:"Сияющая птица возрождения и энергии."}
+  ];
+  const catalog = document.getElementById("catalog");
+  const modal = document.getElementById("modal");
+  const tg = window.Telegram && window.Telegram.WebApp;
+  if (tg) { tg.ready(); tg.expand(); }
+  function openRequest(gift) {
+    document.getElementById("modalTitle").textContent = gift.name;
+    document.getElementById("modalText").textContent = `Ориентировочная цена: ${gift.price.toLocaleString("ru-RU")} ₽. Редкость в концепте: ${gift.rarity}. Это заявка, а не оплата.`;
+    modal.classList.add("open");
+    document.getElementById("contactBtn").onclick = () => {
+      if (SHOP_TELEGRAM_USERNAME.trim()) {
+        const message = encodeURIComponent(`Здравствуйте! Интересует NFT-подарок «${gift.name}». Подскажите, когда он будет доступен и как проверить подлинность.`);
+        const url = `https://t.me/${SHOP_TELEGRAM_USERNAME.trim()}?text=${message}`;
+        if (tg && tg.openTelegramLink) tg.openTelegramLink(url); else window.open(url, "_blank", "noopener");
+      } else {
+        const text = "Сначала создай Telegram-бота через @BotFather, затем укажи его username в переменной SHOP_TELEGRAM_USERNAME в index.html.";
+        if (tg && tg.showAlert) tg.showAlert(text); else alert(text);
+      }
+    };
+  }
+  gifts.forEach(g => {
+    const card = document.createElement("article");
+    card.className = "card";
+    card.innerHTML = `<div class="art" style="--glow:${g.glow}"><span class="rarity ${g.className}">${g.rarity}</span><span class="art-icon" aria-hidden="true">${g.icon}</span></div><div class="content"><h3>${g.name}</h3><p class="desc">${g.desc}</p><div class="meta"><span>Концепт редкости</span><span class="price">${g.price.toLocaleString("ru-RU")} ₽</span></div><button class="buy" type="button">Оставить заявку</button></div>`;
+    card.querySelector("button").addEventListener("click", () => openRequest(g));
+    catalog.appendChild(card);
+  });
+  document.getElementById("closeModal").addEventListener("click", () => modal.classList.remove("open"));
+  modal.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("open"); });
+</script>
+</body>
+</html>
